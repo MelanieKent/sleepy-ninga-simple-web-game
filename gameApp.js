@@ -17,3 +17,6 @@ playArea.drawRect(0, 0, 1000, 1000);
 playArea.endFill();
 
 app.stage.addChild(playArea);
+
+document.body.appendChild(app.view);
+
