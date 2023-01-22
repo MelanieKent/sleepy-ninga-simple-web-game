@@ -190,6 +190,7 @@ beginText.style.fontFamily = 'Papyrus';
 
 app.stage.addChild(beginText);
 
+
 // document.addEventListener('keydown', function(e) {
 //    if (!characterSelected && (e.key == 'z' ||e.key == 'x' || e.key == 'c' || e.key == 'v')) {
 //       if (e.key == 'z') {
@@ -283,6 +284,14 @@ gameOverScreen.beginFill(0x000000)
 .endFill();
 //
 
+//Begin story text
+const storyText = new PIXI.Text('Thrice upon a time, our incredible ninjas decided to attend a hackathon. \n After winning, some other salty ninjas decide to take them out, in order to \n get home and sleep after a long night of coding, our heroic ninjas must dodge \n incoming attacks to escape.')
+storyText.x = 50;
+storyText.y = 200;
+storyText.style.fill = 0x000000;
+storyText.style.fontFamily = 'Papyrus';
+
+app.stage.addChild(storyText);
 
 
 
