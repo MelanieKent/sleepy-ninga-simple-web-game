@@ -99,7 +99,7 @@ obstacle3.beginFill(0xFFFFFF)
 
 
 //player
-const playerTexture = PIXI.Texture.from(localServerName + '//images/player.png');
+const playerTexture = PIXI.Texture.from(localServerName + '//images/ninja.png');
 const playerSprite = new PIXI.Sprite(playerTexture);
 playerSprite.scale.set(1, 1);
 playerSprite.x = 100;
