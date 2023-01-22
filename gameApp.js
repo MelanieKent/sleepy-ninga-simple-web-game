@@ -288,8 +288,8 @@ gameOverScreen.beginFill(0x000000)
 //
 
 //Begin story text
-const storyText = new PIXI.Text('Thrice upon a time, our incredible ninjas decided to attend a hackathon.After winning, some other salty ninjas decide to take them out, in order to \n get home and sleep after a long night of coding, our heroic ninjas must dodge \n incoming attacks to escape.')
-storyText.x = 100;
+const storyText = new PIXI.Text('Thrice upon a time, our incredible ninjas decided to attend a hackathon. After winning, some other salty ninjas decide to take them out. In order to \n get home and sleep after a long night of coding, our heroic ninjas must dodge \n incoming attacks to escape.')
+storyText.x = 140;
 storyText.y = 200;
 storyText.style.align = "center";
 storyText.style.fill = 0x000000;
@@ -301,7 +301,7 @@ app.stage.addChild(storyText);
 
 //Begin story Instructions
 const instructions = new PIXI.Text('Press \'Enter\' to start playing.\nPress \'P\' to pause the game.\nPress \'Space bar\' to jump.');
-instructions.x = 400;
+instructions.x = 420;
 instructions.y = 400;
 instructions.style.align = "center";
 instructions.style.fill = 0x000000;
@@ -384,7 +384,7 @@ app.ticker.add(() => {
      scoreText.y = 360;
      app.stage.addChild(scoreText);
 
-     const resetText = new PIXI.Text('Press r to restart');
+     const resetText = new PIXI.Text('Press \'r\' to restart');
      resetText.x = 510;
      resetText.y = 430;
      resetText.style.fontSize = 25;
