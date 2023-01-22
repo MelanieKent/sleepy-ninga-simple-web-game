@@ -7,6 +7,8 @@ const Application = PIXI.Application;
 
 //CONSTANTS
 var localServerName = 'http://127.0.0.1:5500/';
+//change this to local server address to run the game
+
 var gameWidth = 1200;
 var gameHeight = 645;
 var lineY = 365;
@@ -15,6 +17,9 @@ var obstacleSpeed = 13;
 var gameOver = false;
 var counter = -1;
 var finalScore = 0;
+var hasGameStarted = false;
+var arrayOfNinjas = [];
+var ninjaName = 'green.png';
 
 
 //launching application
@@ -121,7 +126,7 @@ obstacle3.beginFill(0x1bcfcc)
 
 
 //player
-const playerTexture = PIXI.Texture.from(localServerName + '//images/ninja.png');
+const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninjaName);
 const playerSprite = new PIXI.Sprite(playerTexture);
 playerSprite.scale.set(1, 1);
 playerSprite.x = 100;
@@ -171,6 +176,9 @@ document.addEventListener('keydown', function(e) {
          gameOver = true;
          playerSprite.y = 1000;
       }
+   } else if (!hasGameStarted && e.key == 'Enter') {
+      hasGameStarted = true;
+      app.stage.removeChild(beginScreen);
    }
    
 })
@@ -203,8 +211,32 @@ gameOverScreen.beginFill(0x000000)
 //
 
 
+app.stage.addChild(obstacle2); 
+
+
+
+
+
+
+
+const beginScreen = new Graphics();
+beginScreen.beginFill(0xf0960e);
+beginScreen.drawRect(0, 0, 1200, 645);
+beginScreen.endFill();
+
+app.stage.addChild(beginScreen);
+
+
+
+
+
+
+
 // gravity and jumping
 app.ticker.add(() => {
+   if (!hasGameStarted) {
+      return;
+   }
     if (playerSprite.y < 420) {
         playerSprite.y += 15; // gravity, player.y falling down at speed 1;
     }
@@ -298,4 +330,9 @@ function checkCollision(rect, circle) {
    return false;
 }
 
-app.stage.addChild(obstacle2); 
+
+
+
+
+
+
