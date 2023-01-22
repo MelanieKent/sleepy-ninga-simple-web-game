@@ -169,6 +169,11 @@ playerSprite.y = 420;
 app.stage.addChild(playerSprite);
 // characterSelected = true;
 
+
+
+
+
+
 const beginScreen = new Graphics();
 beginScreen.beginFill(0xf0960e);
 beginScreen.drawRect(0, 0, 1200, 645);
@@ -176,6 +181,14 @@ beginScreen.endFill();
 
 app.stage.addChild(beginScreen); 
 
+const beginText = new PIXI.Text('Welcome to Sleepy Ninja!');
+beginText.x = 300;
+beginText.y = 30;
+beginText.style.fill = 0x08203C;
+beginText.style.fontSize = 50;
+beginText.style.fontFamily = 'Papyrus';
+
+app.stage.addChild(beginText);
 
 // document.addEventListener('keydown', function(e) {
 //    if (!characterSelected && (e.key == 'z' ||e.key == 'x' || e.key == 'c' || e.key == 'v')) {
