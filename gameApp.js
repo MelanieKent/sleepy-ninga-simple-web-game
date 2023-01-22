@@ -12,6 +12,7 @@ var gameHeight = 645;
 var lineY = 365;
 var cooldown = -1;
 var obstacleSpeed = 13;
+var gameOver = false;
 
 
 const app = new Application({
@@ -105,8 +106,8 @@ obstacle1.beginFill(0x1bcfcc)
 
 
 const obstacle2 = new Graphics();
-obstacle2.beginFill(0xf0960e);
-obstacle2.drawStar(0, 0, 10, 35);
+obstacle2.beginFill(0x888888);
+obstacle2.drawStar(0, 0, 8, 35);
 obstacle2.endFill();
 
 
@@ -143,15 +144,31 @@ var counter = -1;
 var finalScore = 0;
 
 const style = new PIXI.TextStyle({
-   fontFamily: 'Impact',
-   fontSize: 48,
-   fill: 'deepskyblue',
+   fontFamily: 'Papyrus',
+   fontSize: 50,
+   fill: 0xf0960e
 });
 
-const myText = new PIXI.Text('SCORE: ' + counter, style);
+const myText = new PIXI.Text('Score: ' + counter, style);
 myText.x = 940;
 myText.y = 20;
 app.stage.addChild(myText);
+
+
+//
+const ggText = new PIXI.Text('Game Over');
+ggText.x = 320;
+ggText.y = 240;
+ggText.style.fill = 0xCD1515;
+ggText.style.fontSize = 100;
+ggText.style.fontFamily = 'Papyrus';
+
+
+const gameOverScreen = new Graphics();
+gameOverScreen.beginFill(0x000000)
+.drawRect(0, 0, 1200, 645)
+.endFill();
+//
 
 
 // gravity and jumping
@@ -169,24 +186,34 @@ app.ticker.add(() => {
     obstacle2.x -= obstacleSpeed;
 
 
-    if (obstacle2.x < -10) {
+    if (obstacle2.x < -10 && !gameOver) {
       counter += 1;
-      myText.text = "SCORE: "+ counter;
+      myText.text = "Score: "+ counter;
       console.log('made it!');
       obstacle2.x = 1300;
-      if (Math.random() < 0.5) {
+      var tmpRandom = Math.random();
+      if (tmpRandom < 0.5) {
          obstacle2.y = 550;
       } else {
          obstacle2.y = 300;
       }
       obstacleSpeed = (Math.random() * 10) + 15;
+      if (tmpRandom < 0.05) {
+         obstacleSpeed = (Math.random() * 10) + 25;
+      }
     }
 
 
    if (checkCollision(playerSprite, obstacle2)) {
-      app.stage.addChild(obstacle1);
-      finalScore = counter;
+     gameOver = true;
+     finalScore = counter;
+     app.stage.addChild(gameOverScreen);
+     app.stage.addChild(ggText);
 
+     const scoreText = new PIXI.Text('Your Score: ' + counter, style);
+     scoreText.x = 450;
+     scoreText.y = 380;
+     app.stage.addChild(scoreText);
    }
 });
 
