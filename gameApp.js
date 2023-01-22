@@ -18,9 +18,8 @@ var gameOver = false;
 var counter = -1;
 var finalScore = 0;
 var hasGameStarted = false;
-var arrayOfNinjas = [];
-var ninjaName = 'green.png';
-
+var ninjaNum = 0;
+var ninja = 'purple.png';
 
 //launching application
 const app = new Application({
@@ -125,17 +124,6 @@ obstacle3.beginFill(0x1bcfcc)
 .endFill();
 
 
-//player
-const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninjaName);
-const playerSprite = new PIXI.Sprite(playerTexture);
-playerSprite.scale.set(1, 1);
-playerSprite.x = 100;
-playerSprite.y = 420;
-app.stage.addChild(playerSprite);
-
-
-playerSprite.interactive = true;
-
 
 
 //Pause  Screen
@@ -148,9 +136,17 @@ pauseScreen.beginFill(0x000000)
 const pauseText = new PIXI.Text('Game Paused');
 pauseText.x = 320;
 pauseText.y = 240;
-pauseText.style.fill = 0xCD1515;
+pauseText.style.fill = 0xf0960e;
 pauseText.style.fontSize = 100;
 pauseText.style.fontFamily = 'Papyrus';
+
+//player
+const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
+const playerSprite = new PIXI.Sprite(playerTexture);
+playerSprite.scale.set(1, 1);
+playerSprite.x = 100;
+playerSprite.y = 420;
+app.stage.addChild(playerSprite);
 
 // keyboard events
 document.addEventListener('keydown', function(e) {
@@ -176,12 +172,44 @@ document.addEventListener('keydown', function(e) {
          gameOver = true;
          playerSprite.y = 1000;
       }
+   } else if (e.key == 's') {
+      app.stage.removeChild(playerSprite);
+      if (ninjaNum == 0) {
+         ninja = 'purple.png';
+      }
+      if (ninjaNum == 1) {
+         ninja = 'red.png';
+      }
+      if (ninjaNum == 2) {
+         ninja = 'green.png';
+      }
+      if (ninjaNum == 3) {
+         ninja = 'naruto.png';
+      }
+      ninjaNum += 1;
+      if (ninjaNum == 4) {
+         ninjaNum = 0;
+      }
+            
+      //player
+      const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
+      const playerSprite = new PIXI.Sprite(playerTexture);
+      playerSprite.scale.set(1, 1);
+      playerSprite.x = 100;
+      playerSprite.y = 420;
+      app.stage.addChild(playerSprite);
+
    } else if (!hasGameStarted && e.key == 'Enter') {
       hasGameStarted = true;
       app.stage.removeChild(beginScreen);
    }
    
 })
+
+
+
+
+playerSprite.interactive = true;
 
 const style = new PIXI.TextStyle({
    fontFamily: 'Papyrus',
