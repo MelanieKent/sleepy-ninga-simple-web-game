@@ -33,14 +33,7 @@ playArea.beginFill(0x00008B);
 playArea.drawRect(gameWidth/2 - 1200/2, gameHeight/2 - 1000/2, 1200, 1000);
 playArea.endFill();
 
-
-
-
 app.stage.addChild(playArea);
-
-
-
-
 
 // background buidlings
 const backTexture = PIXI.Texture.from(localServerName + '//images/back.jpg');
@@ -56,7 +49,7 @@ backSprite.tileScale.set(0.5, 0.5);
 
 // for the background frame
 app.ticker.add(function() {
-   backSprite.tilePosition.x -= 2;
+   backSprite.tilePosition.x -= 0.5;
 })
 
 
@@ -127,7 +120,7 @@ const playerTexture = PIXI.Texture.from(localServerName + '//images/ninja.png');
 const playerSprite = new PIXI.Sprite(playerTexture);
 playerSprite.scale.set(1, 1);
 playerSprite.x = 100;
-playerSprite.y = 400
+playerSprite.y = 420;
 app.stage.addChild(playerSprite);
 
 
@@ -148,7 +141,7 @@ document.addEventListener('keydown', function(e) {
 
 // gravity and jumping
 app.ticker.add(() => {
-    if (playerSprite.y < 365) {
+    if (playerSprite.y < 420) {
         playerSprite.y += 15; // gravity, player.y falling down at speed 1;
     }
 
@@ -163,7 +156,7 @@ app.ticker.add(() => {
 
     if (obstacle2.x < -10) {
       obstacle2.x = 1300;
-      obstacle2.y = 500;
+      obstacle2.y = 550;
     }
    //  var isOverlapping = checkOverlap(obstacle2, obstacle2.x, obstacle2.y, playerSprite.x, playerSprite.y, playerSprite.x + playerSprite.width, playerSprite.y + playerSprite.height)
 
@@ -208,12 +201,5 @@ function checkCollision(rect, circle) {
    }
    return false;
 }
-
-
-
-   
-
-
-
 
 app.stage.addChild(obstacle2); 
