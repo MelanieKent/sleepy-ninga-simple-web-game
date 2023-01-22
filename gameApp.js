@@ -110,15 +110,15 @@ playerSprite.interactive = true;
 
 document.addEventListener('keydown', function(e) {
     if (e.key == ' ' && cooldown <= 0) {
-        playerSprite.y -= 200;
-        cooldown = 67  ;
+        playerSprite.y -= 400;
+        cooldown = 30;
     }
     
 })
 
 app.ticker.add(() => {
     if (playerSprite.y < 365) {
-        playerSprite.y += 5   ; // gravity, player.y falling down at speed 1; 
+        playerSprite.y += 15   ; // gravity, player.y falling down at speed 1; 
     } 
     cooldown--;
 });
