@@ -6,7 +6,7 @@ var localServerName = 'http://127.0.0.1:5500';
 var gameWidth = 1200;
 var gameHeight = 645;
 var lineY = 365;
-var cooldown = 0;
+var cooldown = -1;
 
 const app = new Application({
    width: gameWidth,
@@ -85,18 +85,15 @@ obstacle1.beginFill(0xFFFFFF)
 ])
 .endFill();
 
-
 const obstacle2 = new Graphics();
 obstacle2.beginFill(0xFFFFFF);
-obstacle2.drawRect(50, 400, 100, 100);
+obstacle2.drawRect(1000, 500, 70, 70);
 obstacle2.endFill();
-
 
 const obstacle3 = new Graphics();
 obstacle3.beginFill(0xFFFFFF)
 .drawEllipse(775, 500, 100, 50)
 .endFill();
-
 
 //player
 const playerTexture = PIXI.Texture.from(localServerName + '//images/ninja.png');
@@ -108,6 +105,8 @@ app.stage.addChild(playerSprite);
 
 playerSprite.interactive = true;
 
+
+// keyboard events
 document.addEventListener('keydown', function(e) {
     if (e.key == ' ' && cooldown <= 0) {
         playerSprite.y -= 400;
@@ -116,12 +115,17 @@ document.addEventListener('keydown', function(e) {
     
 })
 
+// gravity and jumping
 app.ticker.add(() => {
     if (playerSprite.y < 365) {
-        playerSprite.y += 15   ; // gravity, player.y falling down at speed 1; 
+        playerSprite.y += 12   ; // gravity, player.y falling down at speed 1; 
     } 
     cooldown--;
+
+    obstacle2.x -= 10;
 });
+
+app.stage.addChild(obstacle2);
 
 
 
