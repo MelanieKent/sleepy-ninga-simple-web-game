@@ -41,7 +41,7 @@ backSprite.tileScale.set(0.5, 0.5);
 
 // for the background frame
 app.ticker.add(function() {
-   backSprite.tilePosition.x -= 0.5;
+   backSprite.tilePosition.x -= 2;
 })
 
 app.stage.addChild(backSprite);
@@ -60,7 +60,7 @@ trackSprite.position.set(0,493);
 
 // for the background frame
 app.ticker.add(function() {
-   trackSprite.tilePosition.x -= 2.5;
+   trackSprite.tilePosition.x -= 6;
 
 })
 
@@ -76,7 +76,7 @@ obstacle1position = 775;
 
 
 const obstacle1 = new Graphics();
-obstacle1.beginFill(0xFFFFFF)
+obstacle1.beginFill(0x1bcfcc)
 .drawPolygon([
   obstacle1position, 450,
   obstacle1position + 150, 400,
@@ -86,12 +86,12 @@ obstacle1.beginFill(0xFFFFFF)
 .endFill();
 
 const obstacle2 = new Graphics();
-obstacle2.beginFill(0xFFFFFF);
-obstacle2.drawRect(1000, 500, 70, 70);
+obstacle2.beginFill(0xf0960e);
+obstacle2.drawStar(1000, 500, 10, 50);
 obstacle2.endFill();
 
 const obstacle3 = new Graphics();
-obstacle3.beginFill(0xFFFFFF)
+obstacle3.beginFill(0x1bcfcc)
 .drawEllipse(775, 500, 100, 50)
 .endFill();
 
