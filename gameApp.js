@@ -247,6 +247,9 @@ document.addEventListener('keydown', function(e) {
    else if (!hasGameStarted && e.key == 'Enter') {
       hasGameStarted = true;
       app.stage.removeChild(beginScreen);
+      app.stage.removeChild(instructions);
+      app.stage.removeChild(storyText);
+      app.stage.removeChild(beginText);
    }
    
    
@@ -285,13 +288,28 @@ gameOverScreen.beginFill(0x000000)
 //
 
 //Begin story text
-const storyText = new PIXI.Text('Thrice upon a time, our incredible ninjas decided to attend a hackathon. \n After winning, some other salty ninjas decide to take them out, in order to \n get home and sleep after a long night of coding, our heroic ninjas must dodge \n incoming attacks to escape.')
-storyText.x = 50;
+const storyText = new PIXI.Text('Thrice upon a time, our incredible ninjas decided to attend a hackathon.After winning, some other salty ninjas decide to take them out, in order to \n get home and sleep after a long night of coding, our heroic ninjas must dodge \n incoming attacks to escape.')
+storyText.x = 100;
 storyText.y = 200;
+storyText.style.align = "center";
 storyText.style.fill = 0x000000;
+storyText.style.wordWrap = true;
+storyText.style.wordWrapWidth = 900;
 storyText.style.fontFamily = 'Papyrus';
 
 app.stage.addChild(storyText);
+
+//Begin story Instructions
+const instructions = new PIXI.Text('Press \'Enter\' to start playing.\nPress \'P\' to pause the game.\nPress \'Space bar\' to jump.');
+instructions.x = 400;
+instructions.y = 400;
+instructions.style.align = "center";
+instructions.style.fill = 0x000000;
+instructions.style.wordWrap = true;
+instructions.style.wordWrapWidth = 900;
+instructions.style.fontFamily = 'Papyrus';
+
+app.stage.addChild(instructions);
 
 
 
@@ -348,9 +366,9 @@ app.ticker.add(() => {
       } else {
          obstacle2.y = 300;
       }
-      obstacleSpeed = (Math.random() * 10) + 15;
+      obstacleSpeed = (Math.random() * 15) + 15;
       if (tmpRandom < 0.05) {
-         obstacleSpeed = (Math.random() * 14) + 25;
+         obstacleSpeed = (Math.random() * 20) + 30;
       }
     }
 
