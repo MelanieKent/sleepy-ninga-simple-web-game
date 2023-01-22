@@ -2,11 +2,10 @@
 
 const Application = PIXI.Application;
 
+// game sound
 var sound = new Howl({
     src: ['sound/Yugen_-_Emotional_Ethnic_Music.mp3']
  });
- 
- 
  sound.play(); 
 
 //CONSTANTS 
@@ -263,10 +262,20 @@ app.ticker.add(() => {
       } else {
          ninjaStar.y = 300;
       }
-      obstacleSpeed = (Math.random() * 15) + 15;        // random obstacle speed
-      if (tmpRandom < 0.05) {
-         obstacleSpeed = (Math.random() * 20) + 30;
+      if (counter <= 15) {
+         obstacleSpeed = (Math.random() * 15) + 15;        // random obstacle speed
+         if (tmpRandom < 0.05) {
+            obstacleSpeed = (Math.random() * 20) + 30;
+         }
       }
+
+      if (counter > 15) {
+         obstacleSpeed = (Math.random() * 15) + 25;        // when reach 15 obstacle speed faster
+         if (tmpRandom < 0.05) {
+            obstacleSpeed = (Math.random() * 20) + 40;
+         }
+      }
+
     }
 
    if (checkCollision(playerSprite, ninjaStar)) {        // checking collision
