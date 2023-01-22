@@ -17,7 +17,7 @@ var counter = -1;
 var finalScore = 0;
 
 
-
+//launching application
 const app = new Application({
    width: gameWidth,
    height: gameHeight,
@@ -133,6 +133,19 @@ playerSprite.interactive = true;
 
 
 
+//Pause  Screen
+const pauseScreen = new Graphics();
+pauseScreen.beginFill(0x000000)
+.drawRect(0, 0, 1200, 645)
+.endFill();
+
+//Pause Over Screen
+const pauseText = new PIXI.Text('Game Paused');
+pauseText.x = 320;
+pauseText.y = 240;
+pauseText.style.fill = 0xCD1515;
+pauseText.style.fontSize = 100;
+pauseText.style.fontFamily = 'Papyrus';
 
 // keyboard events
 document.addEventListener('keydown', function(e) {
@@ -140,6 +153,25 @@ document.addEventListener('keydown', function(e) {
         playerSprite.y -= 400;
         cooldown = 30;
     }
+    else if (e.key == 'p') {
+      if (gameOver) {
+         
+         //if paused, unpause
+         gameOver = false;
+         app.stage.removeChild(pauseScreen);
+         app.stage.removeChild(pauseText);
+         //resets player and obstacle
+         playerSprite.y = 400;
+         obstacle2.x = 1500;
+         
+      } else {
+         //pauses game, if unpaused
+         app.stage.addChild(pauseScreen);
+         app.stage.addChild(pauseText);
+         gameOver = true;
+         playerSprite.y = 1000;
+      }
+   }
    
 })
 
@@ -155,7 +187,7 @@ myText.y = 20;
 app.stage.addChild(myText);
 
 
-//
+//Game Over Screen
 const ggText = new PIXI.Text('Game Over');
 ggText.x = 320;
 ggText.y = 200;
