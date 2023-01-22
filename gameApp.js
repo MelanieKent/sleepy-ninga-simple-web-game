@@ -249,7 +249,8 @@ document.addEventListener('keydown', function(e) {
             app.stage.removeChild(pauseText);
             //resets player and obstacle
             playerSprite.y = 400;
-            obstacle2.x = 1500;
+            // obstacle2.x = 1500;
+            obstacleSpeed = 13;
             
          } else {
             //pauses game, if unpaused
@@ -257,6 +258,7 @@ document.addEventListener('keydown', function(e) {
             app.stage.addChild(pauseText);
             gameOver = true;
             playerSprite.y = 1000;
+            obstacleSpeed = 0;
          }
    } 
    else if (!hasGameStarted && e.key == 'Enter') {
