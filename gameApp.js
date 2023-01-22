@@ -100,7 +100,7 @@ const playerTexture = PIXI.Texture.from(localServerName + '//images/ninja.png');
 const playerSprite = new PIXI.Sprite(playerTexture);
 playerSprite.scale.set(1, 1);
 playerSprite.x = 100;
-playerSprite.y = 400
+playerSprite.y = 420
 app.stage.addChild(playerSprite);
 
 playerSprite.interactive = true;
@@ -117,7 +117,7 @@ document.addEventListener('keydown', function(e) {
 
 // gravity and jumping
 app.ticker.add(() => {
-    if (playerSprite.y < 365) {
+    if (playerSprite.y < 400) {
         playerSprite.y += 12; // gravity, player.y falling down at speed 1; 
     } 
 
