@@ -13,6 +13,9 @@ var lineY = 365;
 var cooldown = -1;
 var obstacleSpeed = 13;
 var gameOver = false;
+var counter = -1;
+var finalScore = 0;
+
 
 
 const app = new Application({
@@ -139,9 +142,6 @@ document.addEventListener('keydown', function(e) {
     }
    
 })
-
-var counter = -1;
-var finalScore = 0;
 
 const style = new PIXI.TextStyle({
    fontFamily: 'Papyrus',
