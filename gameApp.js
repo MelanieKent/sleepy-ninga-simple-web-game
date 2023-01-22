@@ -116,13 +116,12 @@ obstacle1.beginFill(0x1bcfcc)
 const obstacle2 = new Graphics();
 obstacle2.beginFill(0x888888);
 obstacle2.drawStar(0, 0, 8, 35);
+// obstacle2.anchor.x = 0.5;
+// obstacle2.anchor.y = 0.5;
 obstacle2.endFill();
 
 
-const obstacle3 = new Graphics();
-obstacle3.beginFill(0x1bcfcc)
-.drawEllipse(775, 500, 100, 50)
-.endFill();
+
 
 
 app.stage.addChild(obstacle2); 
@@ -291,10 +290,11 @@ playerSprite.interactive = true;
 // gravity and jumping
 app.ticker.add(() => {
    if (!hasGameStarted) {
-      console.log('not started');
+      // console.log('not started');
       return;
    }
-   console.log('started');
+   // console.log('started');
+   
     if (playerSprite.y < 420) {
         playerSprite.y += 15; // gravity, player.y falling down at speed 1;
     }
@@ -306,6 +306,7 @@ app.ticker.add(() => {
 
     // making the box move left with speed between [15,25]
     obstacle2.x -= obstacleSpeed;
+    obstacle2.rotation += -0.1;
 
 
     if (obstacle2.x < -10 && !gameOver) {
@@ -320,14 +321,14 @@ app.ticker.add(() => {
       myText.text = "Score: "+ counter;
       obstacle2.x = 1300;
       var tmpRandom = Math.random();
-      if (tmpRandom < 0.5) {
+      if (tmpRandom < 0.8) {
          obstacle2.y = 550;
       } else {
          obstacle2.y = 300;
       }
       obstacleSpeed = (Math.random() * 10) + 15;
       if (tmpRandom < 0.05) {
-         obstacleSpeed = (Math.random() * 10) + 25;
+         obstacleSpeed = (Math.random() * 14) + 25;
       }
     }
 
