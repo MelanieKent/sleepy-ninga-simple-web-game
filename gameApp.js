@@ -11,6 +11,7 @@ var gameWidth = 1200;
 var gameHeight = 645;
 var lineY = 365;
 var cooldown = -1;
+var obstacleSpeed = 13;
 
 
 const app = new Application({
@@ -150,21 +151,20 @@ app.ticker.add(() => {
     cooldown--;
 
 
-    // making the box move left with speed 10
-    obstacle2.x -= 13;
+    // making the box move left with speed between [15,25]
+    obstacle2.x -= obstacleSpeed;
 
 
     if (obstacle2.x < -10) {
       obstacle2.x = 1300;
-      obstacle2.y = 550;
+      if (Math.random() < 0.5) {
+         obstacle2.y = 550;
+      } else {
+         obstacle2.y = 300;
+      }
+      obstacleSpeed = (Math.random() * 10) + 15;
     }
-   //  var isOverlapping = checkOverlap(obstacle2, obstacle2.x, obstacle2.y, playerSprite.x, playerSprite.y, playerSprite.x + playerSprite.width, playerSprite.y + playerSprite.height)
 
-
-   //  if (isOverlapping) {
-   //    console.log('test');
-   //    app.stage.addChild(obstacle1);
-   //  }
 
    if (checkCollision(playerSprite, obstacle2)) {
       app.stage.addChild(obstacle1);
