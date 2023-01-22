@@ -18,8 +18,9 @@ var gameOver = false;
 var counter = -1;
 var finalScore = 0;
 var hasGameStarted = false;
-var ninjaNum = 0;
+var ninjaNum = -1;
 var ninja = 'purple.png';
+var characterIsSelected = false;
 
 //launching application
 const app = new Application({
@@ -140,13 +141,13 @@ pauseText.style.fill = 0xf0960e;
 pauseText.style.fontSize = 100;
 pauseText.style.fontFamily = 'Papyrus';
 
-//player
-const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
-const playerSprite = new PIXI.Sprite(playerTexture);
-playerSprite.scale.set(1, 1);
-playerSprite.x = 100;
-playerSprite.y = 420;
-app.stage.addChild(playerSprite);
+// //player
+// const startPlayerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
+// const startPlayerSprite = new PIXI.Sprite(playerTexture);
+// startPlayerSprite.scale.set(1, 1);
+// startPlayerSprite.x = 100;
+// startPlayerSprite.y = 420;
+// app.stage.addChild(startPlayerSprite);
 
 // keyboard events
 document.addEventListener('keydown', function(e) {
@@ -172,34 +173,29 @@ document.addEventListener('keydown', function(e) {
          gameOver = true;
          playerSprite.y = 1000;
       }
-   } else if (e.key == 's') {
-      app.stage.removeChild(playerSprite);
-      if (ninjaNum == 0) {
-         ninja = 'purple.png';
-      }
-      if (ninjaNum == 1) {
+      } else if (e.key == 'z' && !characterIsSelected) {
+            ninja = 'purple.png';
+            characterIsSelected = true;
+      } else if (e.key == 'x' && !characterIsSelected) {
          ninja = 'red.png';
-      }
-      if (ninjaNum == 2) {
+         characterIsSelected = true;
+      } else if (e.key == 'c' && !characterIsSelected) {
          ninja = 'green.png';
-      }
-      if (ninjaNum == 3) {
+         characterIsSelected = true;
+      } else if (e.key == 'v' && !characterIsSelected) {
          ninja = 'naruto.png';
+         characterIsSelected = true;
       }
-      ninjaNum += 1;
-      if (ninjaNum == 4) {
-         ninjaNum = 0;
-      }
-            
-      //player
-      const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
-      const playerSprite = new PIXI.Sprite(playerTexture);
-      playerSprite.scale.set(1, 1);
-      playerSprite.x = 100;
-      playerSprite.y = 420;
-      app.stage.addChild(playerSprite);
-
-   } else if (!hasGameStarted && e.key == 'Enter') {
+      if (!hasGameStarted && characterIsSelected) {
+         
+         //player
+         const startPlayerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
+         const startPlayerSprite = new PIXI.Sprite(playerTexture);
+         startPlayerSprite.scale.set(1, 1);
+         startPlayerSprite.x = 100;
+         startPlayerSprite.y = 420;
+         app.stage.addChild(startPlayerSprite);
+      } else if (!hasGameStarted && e.key == 'Enter' && characterIsSelected) {
       hasGameStarted = true;
       app.stage.removeChild(beginScreen);
    }
