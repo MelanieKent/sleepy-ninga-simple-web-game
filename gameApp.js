@@ -20,7 +20,7 @@ var finalScore = 0;
 var hasGameStarted = false;
 var ninjaNum = 0;
 var ninja = 'purple.png';
-var characterSelected = false;
+// var characterSelected = false;
 
 //launching application
 const app = new Application({
@@ -125,6 +125,9 @@ obstacle3.beginFill(0x1bcfcc)
 .endFill();
 
 
+app.stage.addChild(obstacle2); 
+
+
 
 
 //Pause  Screen
@@ -142,15 +145,70 @@ pauseText.style.fontSize = 100;
 pauseText.style.fontFamily = 'Papyrus';
 
 //player
-const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
-const playerSprite = new PIXI.Sprite(playerTexture);
+// var playerTexture;
+// var playerSprite;
+
+var characterSelector = Math.floor(Math.random() * 4);
+if (characterSelector == 0) {
+   ninja = 'purple.png';
+}
+if (characterSelector == 1) {
+   ninja = 'green.png';
+}
+if (characterSelector == 2) {
+   ninja = 'red.png';
+}
+if (characterSelector == 3) {
+   ninja = 'naruto.png';
+}
+
+var playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
+var playerSprite = new PIXI.Sprite(playerTexture);
 playerSprite.scale.set(1, 1);
 playerSprite.x = 100;
 playerSprite.y = 420;
 app.stage.addChild(playerSprite);
+// characterSelected = true;
+
+const beginScreen = new Graphics();
+beginScreen.beginFill(0xf0960e);
+beginScreen.drawRect(0, 0, 1200, 645);
+beginScreen.endFill();
+
+app.stage.addChild(beginScreen); 
+
+
+// document.addEventListener('keydown', function(e) {
+//    if (!characterSelected && (e.key == 'z' ||e.key == 'x' || e.key == 'c' || e.key == 'v')) {
+//       if (e.key == 'z') {
+//          ninja = 'green.png';
+//       }
+//       if (e.key == 'x') {
+//          ninja = 'purple.png';
+//       }
+//       if (e.key == 'c') {
+//          ninja = 'red.png';
+//       }
+//       if (e.key == 'z') {
+//          ninja = 'naruto.png';
+//       }
+//       playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
+//       playerSprite = new PIXI.Sprite(playerTexture);
+//       playerSprite.scale.set(1, 1);
+//       playerSprite.x = 100;
+//       playerSprite.y = 420;
+//       app.stage.addChild(playerSprite);
+//       characterSelected = true;
+//    } 
+
+// }) 
+
+
+
 
 // keyboard events
 document.addEventListener('keydown', function(e) {
+
     if (e.key == ' ' && cooldown <= 0) {
         playerSprite.y -= 400;
         cooldown = 30;
@@ -173,37 +231,7 @@ document.addEventListener('keydown', function(e) {
             playerSprite.y = 1000;
          }
    } 
-   // else if (e.key == 's') {
-   //    app.stage.removeChild(playerSprite);
-   //    if (ninjaNum == 0) {
-   //       ninja = 'purple.png';
-   //    }
-   //    if (ninjaNum == 1) {
-   //       ninja = 'red.png';
-   //    }
-   //    if (ninjaNum == 2) {
-   //       ninja = 'green.png';
-   //    }
-   //    if (ninjaNum == 3) {
-   //       ninja = 'naruto.png';
-   //    }
-   //    ninjaNum += 1;
-   //    if (ninjaNum == 4) {
-   //       ninjaNum = 0;
-   //    }
-            
-   //    //player
-   //    const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
-   //    const playerSprite = new PIXI.Sprite(playerTexture);
-   //    playerSprite.scale.set(1, 1);
-   //    playerSprite.x = 100;
-   //    playerSprite.y = 420;
-   //    app.stage.addChild(playerSprite);
-
-   else if (e.key == 'z' ||e.key == 'x' || e.key == 'c' || e.key == 'v') {
-      characterSelected = true;
-   } 
-   else if (!hasGameStarted && e.key == 'Enter' && characterSelected) {
+   else if (!hasGameStarted && e.key == 'Enter') {
       hasGameStarted = true;
       app.stage.removeChild(beginScreen);
    }
@@ -214,7 +242,7 @@ document.addEventListener('keydown', function(e) {
 
 
 
-playerSprite.interactive = true;
+
 
 const style = new PIXI.TextStyle({
    fontFamily: 'Papyrus',
@@ -244,20 +272,15 @@ gameOverScreen.beginFill(0x000000)
 //
 
 
-app.stage.addChild(obstacle2); 
+
+
+
+playerSprite.interactive = true;
 
 
 
 
 
-
-
-const beginScreen = new Graphics();
-beginScreen.beginFill(0xf0960e);
-beginScreen.drawRect(0, 0, 1200, 645);
-beginScreen.endFill();
-
-app.stage.addChild(beginScreen);
 
 
 
@@ -268,8 +291,10 @@ app.stage.addChild(beginScreen);
 // gravity and jumping
 app.ticker.add(() => {
    if (!hasGameStarted) {
+      console.log('not started');
       return;
    }
+   console.log('started');
     if (playerSprite.y < 420) {
         playerSprite.y += 15; // gravity, player.y falling down at speed 1;
     }
