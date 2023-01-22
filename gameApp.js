@@ -187,9 +187,15 @@ app.ticker.add(() => {
 
 
     if (obstacle2.x < -10 && !gameOver) {
+      if (counter == -1) {
+         obstacle2.x = 2000;
+         counter += 1;
+         myText.text = "Score: "+ counter;
+         obstacle2.y = 550;
+         return;
+      }
       counter += 1;
       myText.text = "Score: "+ counter;
-      console.log('made it!');
       obstacle2.x = 1300;
       var tmpRandom = Math.random();
       if (tmpRandom < 0.5) {
