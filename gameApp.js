@@ -123,10 +123,18 @@ obstacle2.endFill();
 
 
 
-
 app.stage.addChild(obstacle2); 
 
+const style = new PIXI.TextStyle({
+   fontFamily: 'Papyrus',
+   fontSize: 50,
+   fill: 0xf0960e
+});
 
+const myText = new PIXI.Text('Score: ' + counter, style);
+myText.x = 940;
+myText.y = 20;
+app.stage.addChild(myText);
 
 
 //Pause  Screen
@@ -172,20 +180,27 @@ app.stage.addChild(playerSprite);
 
 
 
+const beginTexture = PIXI.Texture.from(localServerName + '//images/intro.png');
+const beginSprite = new PIXI.Sprite(beginTexture);
+beginSprite.width = 1300;
+beginSprite.x = -60;
+beginSprite.y = -20;
+beginSprite.height = app.screen.height;
+app.stage.addChild(beginSprite);
 
+// const beginScreen = new Graphics();
+// beginScreen.beginFill(0xf0960e);
+// beginScreen.drawRect(0, 0, 1200, 645);
+// beginScreen.endFill();
 
-const beginScreen = new Graphics();
-beginScreen.beginFill(0xf0960e);
-beginScreen.drawRect(0, 0, 1200, 645);
-beginScreen.endFill();
-
-app.stage.addChild(beginScreen); 
+// app.stage.addChild(beginScreen); 
 
 const beginText = new PIXI.Text('Welcome to Sleepy Ninja!');
-beginText.x = 300;
-beginText.y = 30;
-beginText.style.fill = 0x08203C;
-beginText.style.fontSize = 50;
+beginText.x = 240;
+beginText.y = 40;
+beginText.style.fill = 0xf0960e;
+beginText.style.align = 'center'
+beginText.style.fontSize = 60;;
 beginText.style.fontFamily = 'Papyrus';
 
 app.stage.addChild(beginText);
@@ -246,7 +261,7 @@ document.addEventListener('keydown', function(e) {
    } 
    else if (!hasGameStarted && e.key == 'Enter') {
       hasGameStarted = true;
-      app.stage.removeChild(beginScreen);
+      app.stage.removeChild(beginSprite);
       app.stage.removeChild(instructions);
       app.stage.removeChild(storyText);
       app.stage.removeChild(beginText);
@@ -256,20 +271,6 @@ document.addEventListener('keydown', function(e) {
 })
 
 
-
-
-
-
-const style = new PIXI.TextStyle({
-   fontFamily: 'Papyrus',
-   fontSize: 50,
-   fill: 0xf0960e
-});
-
-const myText = new PIXI.Text('Score: ' + counter, style);
-myText.x = 940;
-myText.y = 20;
-app.stage.addChild(myText);
 
 
 //Game Over Screen
@@ -289,10 +290,11 @@ gameOverScreen.beginFill(0x000000)
 
 //Begin story text
 const storyText = new PIXI.Text('Thrice upon a time, our incredible ninjas decided to attend a hackathon. After winning, some other salty ninjas decide to take them out. In order to \n get home and sleep after a long night of coding, our heroic ninjas must dodge \n incoming attacks to escape.')
-storyText.x = 140;
-storyText.y = 200;
+storyText.x = 190;
+storyText.y = 150;
+storyText.style.fontSize = 22;
 storyText.style.align = "center";
-storyText.style.fill = 0x000000;
+storyText.style.fill = 0xf0960e;
 storyText.style.wordWrap = true;
 storyText.style.wordWrapWidth = 900;
 storyText.style.fontFamily = 'Papyrus';
@@ -301,10 +303,11 @@ app.stage.addChild(storyText);
 
 //Begin story Instructions
 const instructions = new PIXI.Text('Press \'Enter\' to start playing.\nPress \'P\' to pause the game.\nPress \'Space bar\' to jump.');
-instructions.x = 420;
-instructions.y = 400;
+instructions.x = 490;
+instructions.y = 300;
 instructions.style.align = "center";
-instructions.style.fill = 0x000000;
+instructions.style.fill = 0xf0960e;
+instructions.style.fontSize = 16;
 instructions.style.wordWrap = true;
 instructions.style.wordWrapWidth = 900;
 instructions.style.fontFamily = 'Papyrus';
@@ -312,16 +315,7 @@ instructions.style.fontFamily = 'Papyrus';
 app.stage.addChild(instructions);
 
 
-
-
 playerSprite.interactive = true;
-
-
-
-
-
-
-
 
 
 
@@ -398,6 +392,7 @@ app.ticker.add(() => {
       }
      
   })
+  
 
 
    }
