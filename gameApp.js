@@ -183,10 +183,7 @@ function checkCollision(rect, circle) {
    // Get the center coordinates of the circle
    var cx = circle.x;
    var cy = circle.y;
-   console.log("rectangle x" + cx);
-   console.log("rectangle y" + cy);
-   console.log("circle x" + circle.x);
-   console.log("circle y" + circle.y);
+
 
    // if (cx == rect.x && cy == rect.y) {
    //    return true;
@@ -196,7 +193,6 @@ function checkCollision(rect, circle) {
    var dy = Math.abs(cy - rect.y - rect.height / 2);
    // Check if the distance is less than the radius of the circle
    if (dx < rect.width / 2 + circle.width / 2 && dy < rect.height / 2 + circle.height / 2) {
-       console.log("Collision detected!");
        return true;
    }
    return false;
