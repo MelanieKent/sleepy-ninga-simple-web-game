@@ -158,7 +158,7 @@ app.stage.addChild(myText);
 //
 const ggText = new PIXI.Text('Game Over');
 ggText.x = 320;
-ggText.y = 240;
+ggText.y = 200;
 ggText.style.fill = 0xCD1515;
 ggText.style.fontSize = 100;
 ggText.style.fontFamily = 'Papyrus';
@@ -217,9 +217,26 @@ app.ticker.add(() => {
      app.stage.addChild(ggText);
 
      const scoreText = new PIXI.Text('Your Score: ' + counter, style);
-     scoreText.x = 450;
-     scoreText.y = 380;
+     scoreText.x = 440;
+     scoreText.y = 360;
      app.stage.addChild(scoreText);
+
+     const resetText = new PIXI.Text('Press r to restart');
+     resetText.x = 510;
+     resetText.y = 430;
+     resetText.style.fontSize = 25;
+     resetText.style.fontFamily = 'Papyrus';
+     resetText.style.fill = 0xf0960e;
+     app.stage.addChild(resetText);
+
+     document.addEventListener('keydown', function(e) {
+      if (e.key == 'r' && cooldown <= 0) {
+          window.location.reload();
+      }
+     
+  })
+
+
    }
 });
 
