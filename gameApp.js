@@ -20,6 +20,7 @@ var finalScore = 0;
 var hasGameStarted = false;
 var ninjaNum = 0;
 var ninja = 'purple.png';
+var characterSelected = false;
 
 //launching application
 const app = new Application({
@@ -153,56 +154,60 @@ document.addEventListener('keydown', function(e) {
     if (e.key == ' ' && cooldown <= 0) {
         playerSprite.y -= 400;
         cooldown = 30;
-    }
-    else if (e.key == 'p') {
-      if (gameOver) {
-         
-         //if paused, unpause
-         gameOver = false;
-         app.stage.removeChild(pauseScreen);
-         app.stage.removeChild(pauseText);
-         //resets player and obstacle
-         playerSprite.y = 400;
-         obstacle2.x = 1500;
-         
-      } else {
-         //pauses game, if unpaused
-         app.stage.addChild(pauseScreen);
-         app.stage.addChild(pauseText);
-         gameOver = true;
-         playerSprite.y = 1000;
-      }
-   } else if (e.key == 's') {
-      app.stage.removeChild(playerSprite);
-      if (ninjaNum == 0) {
-         ninja = 'purple.png';
-      }
-      if (ninjaNum == 1) {
-         ninja = 'red.png';
-      }
-      if (ninjaNum == 2) {
-         ninja = 'green.png';
-      }
-      if (ninjaNum == 3) {
-         ninja = 'naruto.png';
-      }
-      ninjaNum += 1;
-      if (ninjaNum == 4) {
-         ninjaNum = 0;
-      }
+    } else if (e.key == 'p') {
+         if (gameOver) {
             
-      //player
-      const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
-      const playerSprite = new PIXI.Sprite(playerTexture);
-      playerSprite.scale.set(1, 1);
-      playerSprite.x = 100;
-      playerSprite.y = 420;
-      app.stage.addChild(playerSprite);
+            //if paused, unpause
+            gameOver = false;
+            app.stage.removeChild(pauseScreen);
+            app.stage.removeChild(pauseText);
+            //resets player and obstacle
+            playerSprite.y = 400;
+            obstacle2.x = 1500;
+            
+         } else {
+            //pauses game, if unpaused
+            app.stage.addChild(pauseScreen);
+            app.stage.addChild(pauseText);
+            gameOver = true;
+            playerSprite.y = 1000;
+         }
+   } 
+   // else if (e.key == 's') {
+   //    app.stage.removeChild(playerSprite);
+   //    if (ninjaNum == 0) {
+   //       ninja = 'purple.png';
+   //    }
+   //    if (ninjaNum == 1) {
+   //       ninja = 'red.png';
+   //    }
+   //    if (ninjaNum == 2) {
+   //       ninja = 'green.png';
+   //    }
+   //    if (ninjaNum == 3) {
+   //       ninja = 'naruto.png';
+   //    }
+   //    ninjaNum += 1;
+   //    if (ninjaNum == 4) {
+   //       ninjaNum = 0;
+   //    }
+            
+   //    //player
+   //    const playerTexture = PIXI.Texture.from(localServerName + '//images/' + ninja);
+   //    const playerSprite = new PIXI.Sprite(playerTexture);
+   //    playerSprite.scale.set(1, 1);
+   //    playerSprite.x = 100;
+   //    playerSprite.y = 420;
+   //    app.stage.addChild(playerSprite);
 
-   } else if (!hasGameStarted && e.key == 'Enter') {
+   else if (e.key == 'z' ||e.key == 'x' || e.key == 'c' || e.key == 'v') {
+      characterSelected = true;
+   } 
+   else if (!hasGameStarted && e.key == 'Enter' && characterSelected) {
       hasGameStarted = true;
       app.stage.removeChild(beginScreen);
    }
+   
    
 })
 
