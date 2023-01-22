@@ -139,6 +139,20 @@ document.addEventListener('keydown', function(e) {
    
 })
 
+var counter = -1;
+var finalScore = 0;
+
+const style = new PIXI.TextStyle({
+   fontFamily: 'Impact',
+   fontSize: 48,
+   fill: 'deepskyblue',
+});
+
+const myText = new PIXI.Text('SCORE: ' + counter, style);
+myText.x = 940;
+myText.y = 20;
+app.stage.addChild(myText);
+
 
 // gravity and jumping
 app.ticker.add(() => {
@@ -156,6 +170,9 @@ app.ticker.add(() => {
 
 
     if (obstacle2.x < -10) {
+      counter += 1;
+      myText.text = "SCORE: "+ counter;
+      console.log('made it!');
       obstacle2.x = 1300;
       if (Math.random() < 0.5) {
          obstacle2.y = 550;
@@ -168,6 +185,7 @@ app.ticker.add(() => {
 
    if (checkCollision(playerSprite, obstacle2)) {
       app.stage.addChild(obstacle1);
+      finalScore = counter;
 
    }
 });
