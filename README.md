@@ -6,6 +6,7 @@ In this game, the player must avoid obstacles as long as possible while trying t
 
 
 <h3> To be implemented: </3>
+<ol>
 - make player be affected by gravity
 - make acceleration non-constant
 - make player and and obstacle images
@@ -15,4 +16,5 @@ In this game, the player must avoid obstacles as long as possible while trying t
 - add increasing score
 - add death condition
 - add death message
+</ol>
 
