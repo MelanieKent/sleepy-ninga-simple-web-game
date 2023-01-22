@@ -118,10 +118,13 @@ document.addEventListener('keydown', function(e) {
 // gravity and jumping
 app.ticker.add(() => {
     if (playerSprite.y < 365) {
-        playerSprite.y += 12   ; // gravity, player.y falling down at speed 1; 
+        playerSprite.y += 12; // gravity, player.y falling down at speed 1; 
     } 
+
+    // prevent double jump
     cooldown--;
 
+    // making the box move left with speed 10
     obstacle2.x -= 10;
 });
 
