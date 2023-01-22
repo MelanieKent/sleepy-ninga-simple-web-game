@@ -44,6 +44,35 @@ app.ticker.add(function() {
 
 app.stage.addChild(backSprite);
 
+//shape
+var obstacle1position;
+obstacle1position = 450;
+var obstacle1position;
+obstacle1position = 50;
+var obstacle1position;
+obstacle1position = 775;
+
+const obstacle1 = new Graphics();
+obstacle1.beginFill(0xFFFFFF)
+.drawPolygon([
+   obstacle1position, 450,
+   obstacle1position + 150, 400,
+   obstacle1position + 200, 500,
+   obstacle1position - 50, 500
+])
+.endFill();
+
+const obstacle2 = new Graphics();
+obstacle2.beginFill(0xFFFFFF);
+obstacle2.drawRect(50, 400, 100, 100);
+obstacle2.endFill();
+
+const obstacle3 = new Graphics();
+obstacle3.beginFill(0xFFFFFF)
+.drawEllipse(775, 500, 100, 50)
+.endFill();
+
+
 //player
 const playerTexture = PIXI.Texture.from(localServerName + '//images/player.png');
 const playerSprite = new PIXI.Sprite(playerTexture);
