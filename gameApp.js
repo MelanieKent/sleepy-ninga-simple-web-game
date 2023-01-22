@@ -2,6 +2,13 @@
 
 const Application = PIXI.Application;
 
+var sound = new Howl({
+    src: ['sound/Yugen_-_Emotional_Ethnic_Music.mp3']
+ });
+ 
+ 
+ sound.play(); 
+
 //CONSTANTS 
 var localServerName = 'http://127.0.0.1:5500/';         //change this to local server address to run the game
 
