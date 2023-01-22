@@ -1,6 +1,6 @@
 {
   "dependencies": {
     "@pixi/graphics-extras": "^7.1.0",
-    "pixi.js": "^7.1.0"
+    "pixi.js": "^7.1.1"
   }
 }
