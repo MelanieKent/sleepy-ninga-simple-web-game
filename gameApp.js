@@ -6,23 +6,18 @@ var localServerName = 'http://127.0.0.1:5500';
 var gameWidth = 1200;
 var gameHeight = 645;
 var lineY = 365;
-
+var cooldown = 0;
 
 const app = new Application({
    width: gameWidth,
    height: gameHeight,
 });
-
-
 app.renderer.background.color = 0xFF1FFF;
-
 
 const Graphics = PIXI.Graphics;
 
-
 // show the stuff
 document.body.appendChild(app.view);
-
 
 //the whole game area in which the game is played
 const playArea = new Graphics();
@@ -34,7 +29,7 @@ playArea.endFill();
 app.stage.addChild(playArea);
 
 
-// background
+// background buidlings
 const backTexture = PIXI.Texture.from(localServerName + '//images/back.jpg');
 const backSprite = new PIXI.TilingSprite(
    backTexture,
@@ -51,11 +46,7 @@ app.ticker.add(function() {
 
 app.stage.addChild(backSprite);
 
-
-
-
-
-// background
+// background track
 const trackTexture = PIXI.Texture.from(localServerName + '//images/track.jpg');
 const trackSprite = new PIXI.TilingSprite(
    trackTexture,
@@ -74,14 +65,6 @@ app.ticker.add(function() {
 })
 
 app.stage.addChild(trackSprite);
-
-
-
-
-
-
-
-
 
 //shape
 var obstacle1position;
@@ -123,40 +106,22 @@ playerSprite.x = 100;
 playerSprite.y = 300
 app.stage.addChild(playerSprite);
 
-
 playerSprite.interactive = true;
 
+document.addEventListener('keydown', function(e) {
+    if (e.key == ' ' && cooldown <= 0) {
+        playerSprite.y -= 200;
+        cooldown = 67  ;
+    }
+    
+})
 
-app.ticker.add(delta => loop(delta));
-
-
-function loop(delta) {
-   playerSprite.y -= 1;
-   if (playerSprite.y >= 200) {
-       playerSprite.y == 200;
-   }
-}
-
-
-// document.addEventListener('keydown', function(e) {
-//     if (e.key == 'ArrowUp') {
-//         while (playerSprite.y >= 200) {
-//             playerSprite.y -= 10;
-//             //need buffer
-//         }
-//         // player.y is at 195 right here
-
-
-//         if (playerSprite.y <= 200) {
-//             while (playerSprite.y <= 200) {
-//                 playerSprite.y += 10;
-//                 if(playerSprite.y >= 365) {
-//                     break;
-//                 }
-//             }
-//         }
-//     }
-// })
+app.ticker.add(() => {
+    if (playerSprite.y < 365) {
+        playerSprite.y += 5   ; // gravity, player.y falling down at speed 1; 
+    } 
+    cooldown--;
+});
 
 
 
