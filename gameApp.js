@@ -17,6 +17,17 @@ const Graphics = PIXI.Graphics;
 
 document.body.appendChild(app.view);
 
+
+
+//the whole game area in which the game is played
+const playArea = new Graphics();
+playArea.beginFill(0x00008B);
+playArea.drawRect(gameWidth/2 - 1200/2, gameHeight/2 - 1000/2, 1200, 1000);
+playArea.endFill();
+
+app.stage.addChild(playArea);
+
+// bakcground
 const backTexture = PIXI.Texture.from(localServerName + '//images/back.jpg');
 const backSprite = new PIXI.TilingSprite(
     backTexture,
@@ -31,7 +42,4 @@ app.ticker.add(function() {
 })
 
 app.stage.addChild(backSprite);
-document.body.appendChild(playerSprite);
-
-
 
