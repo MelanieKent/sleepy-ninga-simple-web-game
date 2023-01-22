@@ -103,7 +103,7 @@ const playerTexture = PIXI.Texture.from(localServerName + '//images/ninja.png');
 const playerSprite = new PIXI.Sprite(playerTexture);
 playerSprite.scale.set(1, 1);
 playerSprite.x = 100;
-playerSprite.y = 300
+playerSprite.y = 450
 app.stage.addChild(playerSprite);
 
 playerSprite.interactive = true;
