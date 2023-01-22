@@ -4,7 +4,7 @@ const Application = PIXI.Application;
 //CONSTANTS
 var localServerName = 'http://127.0.0.1:5500';
 var gameWidth = 1200;
-var gameHeight = 500;
+var gameHeight = 645;
 var lineY = 365;
 
 
@@ -24,10 +24,6 @@ const Graphics = PIXI.Graphics;
 document.body.appendChild(app.view);
 
 
-
-
-
-
 //the whole game area in which the game is played
 const playArea = new Graphics();
 playArea.beginFill(0x00008B);
@@ -38,7 +34,7 @@ playArea.endFill();
 app.stage.addChild(playArea);
 
 
-// bakcground
+// background
 const backTexture = PIXI.Texture.from(localServerName + '//images/back.jpg');
 const backSprite = new PIXI.TilingSprite(
    backTexture,
@@ -53,8 +49,38 @@ app.ticker.add(function() {
    backSprite.tilePosition.x -= 0.5;
 })
 
-
 app.stage.addChild(backSprite);
+
+
+
+
+
+// background
+const trackTexture = PIXI.Texture.from(localServerName + '//images/track.jpg');
+const trackSprite = new PIXI.TilingSprite(
+   trackTexture,
+   );
+
+trackSprite.width = 2400;
+trackSprite.height = 150;
+trackSprite.tileScale.set(0.5, 0.5);
+trackSprite._anchor.set(0.5, 0,5);
+trackSprite.position.set(0,493);
+
+// for the background frame
+app.ticker.add(function() {
+   trackSprite.tilePosition.x -= 2.5;
+
+})
+
+app.stage.addChild(trackSprite);
+
+
+
+
+
+
+
 
 
 //shape
@@ -87,8 +113,6 @@ const obstacle3 = new Graphics();
 obstacle3.beginFill(0xFFFFFF)
 .drawEllipse(775, 500, 100, 50)
 .endFill();
-
-
 
 
 //player
