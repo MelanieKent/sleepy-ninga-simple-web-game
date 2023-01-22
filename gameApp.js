@@ -126,6 +126,10 @@ app.ticker.add(() => {
 
     // making the box move left with speed 10
     obstacle2.x -= 10;
+
+    if (obstacle2.x < -1200) {
+      obstacle2.x = 1000;
+    }
 });
 
 app.stage.addChild(obstacle2);
