@@ -2,8 +2,11 @@
 
 <h1>Sleepy Ninja</h1>
 
-In this game, the player must avoid obstacles as long as possible while trying to achieve the maximum score. If they are hit by an obstacle, they lose. 
+Sleepy ninja allows the user to play randomly as one of four characters, Sleepy Ninja, Angry Ninja, Happy Ninja, and Naruto.
+Press 'Space' to jump over deadly ninja stars. Beware, they all come at you at different speeds! Some of them even come from the air...
 
+If you wish to run the game on your own computer, ensure that you run it on a local server! 
+Side note: Sleepy Ninja runs best on 60hz monitors.
 
 <h3> To be implemented: </h3>
 <ol>
