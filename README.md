@@ -10,9 +10,9 @@ Side note: Sleepy Ninja runs best on 60hz monitors.
 
 <h3> To be implemented: </h3>
 <ol>
-- make acceleration non-constant
-- make player and obstacle shapes
-- add more to background
+- make acceleration non-constant  
+- make player and obstacle shapes  
+- add more to background  
 </ol>
 
 <h2>Images For The Game</h2>
