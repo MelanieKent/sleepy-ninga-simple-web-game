@@ -10,13 +10,13 @@ Side note: Sleepy Ninja runs best on 60hz monitors.
 <ol>
 
 
-- make acceleration non-constant
+- Add character selection feature
 
 
-- make player and obstacle shapes  
+- Make obstacles of various shapes and sizes
 
 
-- add more to background  
+- Add more detail to background  
 
 
 </ol>
